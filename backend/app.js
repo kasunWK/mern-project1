@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ limit: "200mb", extended: true, parameterLimit: 
 app.use('/uploads', express.static('uploads'));
 
 
-const mongoUrlLocal = 'mongodb+srv://Budhdhika:8hrxVe2vSkufqFbi@cluster0.1og54wb.mongodb.net/?retryWrites=true&w=majority'
+const mongoUrlLocal = 'mongodb+srv://iit19044:Hlp1kUqm5d8HlZ51@cluster0.rhlllrd.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(mongoUrlLocal, {
     useNewUrlParser: true,
     useCreateIndex: true,
