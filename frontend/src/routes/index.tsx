@@ -7,12 +7,13 @@ import AdminUsersPage from "../pages/admin/adminUsersPage";
 import AdminOrdersPage from "../pages/admin/adminOrdersPage";
 import CartPage from "../pages/cartPage";
 import RiderOrdersPage from "../pages/rider/riderOrdersPage";
-import Contact from "../pages/contact";
-import About from "../pages/about";
+import AboutPage from "../pages/aboutPage";
+import ContactPage from "../pages/contactPage";
+import AdminOverviewPage from "../pages/admin/adminOverviewPage";
+import SingleItemPage from "../pages/singleItemPage";
 import Service from "../pages/service";
-
-
-
+import Dj from "../pages/dj";
+import Event from "../pages/event";
 
 
 
@@ -41,37 +42,59 @@ const PageRoutes: RouteType[] = [
         bypassLogin: true,
       },
       {
-        route: "contact",
-        component: <Contact />,
-        userAccess: true,
-        bypassLogin: true,
-      },
-      {
-        route: "about",
-        component: <About />,
-        userAccess: true,
-        bypassLogin: true,
-      },
-      {
-        route: "service",
-        component: <Service />,
-        userAccess: true,
-        bypassLogin: true,
-      },
-      {
         route: "cart",
         component: <CartPage />,
         userAccess: true,
       },
+      {
+        route: "products/:id",
+        component: <SingleItemPage />,
+        userAccess: true,
+        bypassLogin: true,
+      },
     ],
   },
- 
+  {
+    route: "/about",
+    component: <AboutPage />,
+    riderAccess: true,
+    bypassLogin: true,
+  },
+  {
+    route: "/contact",
+    component: <ContactPage />,
+    riderAccess: true,
+    bypassLogin: true,
+  },
+
+  {
+    route: "/Service",
+    component:<Service />,
+    riderAccess: true,
+    bypassLogin: true,
+  },
+
+  {
+    route: "/Dj",
+    component:<Dj />,
+    bypassLogin: true,
+  },
+  {
+    route: "/event",
+    component:<Event />,
+    bypassLogin: true,
+  }, 
 
   {
     route: "admin",
     component: <AdminLayout />,
     adminAccess: true,
     children: [
+      {
+        route: "overview",
+        component: <AdminOverviewPage />,
+        adminAccess: true,
+      },
       {
         route: "products",
         component: <AdminProductsPage />,
@@ -94,6 +117,11 @@ const PageRoutes: RouteType[] = [
     component: <MainLayout />,
     ownerAccess: true,
     children: [
+      {
+        route: "overview",
+        component: <AdminOverviewPage />,
+        ownerAccess: true,
+      },
       {
         route: "products",
         component: <AdminProductsPage />,

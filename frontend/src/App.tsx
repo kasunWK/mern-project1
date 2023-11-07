@@ -13,13 +13,6 @@ import { selectUser } from "./store/api/userApi";
 import RegisterPage from "./pages/registerPage";
 import { useEffect } from "react";
 import PageRoutes, { RouteType } from "./routes";
-import Contact from "./pages/contact";
-import About from "./pages/about";
-import Service from "./pages/service";
-
-
-
-
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -34,20 +27,25 @@ function App() {
   });
 
   const navigateToHomePage = () => {
-    switch (user?.usertype) {
-      case "admin":
-        return navigate("/admin/products");
-      case "owner":
-        return navigate("/owner/products");
-      case "rider":
-        return navigate("/rider/orders");
-      case "user":
-        return navigate("/products");
-      case "cashier":
-        return navigate("/products");
-      default:
-        return;
+    if (user?.is_deleted) {
+      return navigate("/login");
+    } else {
+      switch (user?.usertype) {
+        case "admin":
+          return navigate("/admin/overview");
+        case "owner":
+          return navigate("/owner/products");
+        case "rider":
+          return navigate("/rider/orders");
+        case "user":
+          return navigate("/products");
+        case "cashier":
+          return navigate("/products");
+        default:
+          return;
+      }
     }
+
   };
 
   const generateRoutes = (page: RouteType) => {
@@ -94,9 +92,8 @@ function App() {
           {PageRoutes.map((e) => generateRoutes(e))}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/service" element={<Service />} />
+          <Route path="/about" element={<h1>this is about page</h1>} />
+          
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </ConfigProvider>

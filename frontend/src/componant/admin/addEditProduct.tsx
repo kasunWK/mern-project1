@@ -39,6 +39,9 @@ const AddEditProduct = ({
         <Form.Item name="price" label="Price" rules={[{ required: true }]}>
           <Input type="number" />
         </Form.Item>
+        <Form.Item name="quantity" label="Stock Quantity" rules={[{ required: true }]}>
+          <Input type="number" />
+        </Form.Item>
         <Form.Item
           name="category"
           label="Category"
@@ -49,7 +52,7 @@ const AddEditProduct = ({
             defaultValue="sounds"
             options={[
               { label: "Genareter", value: "genareter" },
-              { label: "Stage", value: "stage" },
+              { label: "Screen", value: "screen" },
               { label: "Lights", value: "lights" },
               { label: "Sound", value: "sounds" },
             ]}

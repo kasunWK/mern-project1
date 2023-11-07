@@ -9,7 +9,7 @@ import {
 
 export enum Categories {
   genareter,
-  stage,
+  screen,
   lights,
   sounds,
 }
@@ -67,7 +67,7 @@ const OrdersCard = ({ search }: Props) => {
               <Button type="default" className="bg-blue-600 w-10/12 text-white">
                 <a
                   target="_blank"
-                  href="https://www.google.com/maps"
+                  href={"https://www.google.com/maps?q=" + encodeURIComponent(order.address)}
                   style={{ color: "white" }}
                 >
                   Map
@@ -84,7 +84,11 @@ const OrdersCard = ({ search }: Props) => {
           >
             <Meta
               title={order.customer_name}
-              description={order.items.map((e) => e.name + " | ")}
+              description={order.items.map((e) => e.name)}
+            />
+            <Meta
+              title={order.address}
+              description={order.phone}
             />
             <div className="mt-5 font-bold">{"Rs : " + order.total}</div>
           </Card>

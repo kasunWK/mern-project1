@@ -1,243 +1,186 @@
-import React from 'react';
-import styled from 'styled-components';
+import { Row } from "antd";
+import Header from "../componant/common/header";
+import { Outlet } from "react-router-dom";
+import { Layout, Col } from 'antd';
+import AppFooter from "../componant/common/footer";
+import {useState} from 'react';
 
-function Service() {
+
+const Service = (props: any) => {
+
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <Container>
-      <Head>
-        <img src='/temp/t.png' alt="Header" />
-      </Head>
-      <Body>
-        <Wrap>
-          <Header>
- <h1>Services</h1>
-            <h4>Welcome to our premier open stage equipment renting service! We offer a comprehensive range of services to ensure your event is a grand success. Our offerings include state-of-the-art sound systems, dazzling lighting setups, high-resolution LED screens, and reliable generator rentals. Whether it's a concert, conference, wedding, or any outdoor event, our top-quality equipment is here to elevate your experience and create a memorable atmosphere. With our expertise and top-notch gear, your event will shine brightly and sound crystal clear, making it an unforgettable occasion for all attendees.</h4>
-          </Header>
+    <>
+      <Header />
+      <Row>
+      <Col span={24}>
+     <div>
+     <img src='/temp/service.png' style={{width:'100%', height: "27.5vw"}} />
+     </div>
+     </Col>
 
-          <Detail>
- <div>
-              <h3>General Communication</h3>
-              <p>Prasara Washing Plant Dankotuwa (Pvt) Ltd</p>
-              <h5>Negombo Road, Thabarawila, Waikkala </h5>
-              <p>Sri Lanka</p>
-              <h4>+(94) 31 4927863 &nbsp; &nbsp; &nbsp; +(94)31 4927864</h4>
-            </div>
-          </Detail>
+     </Row>
 
-          <ImageGrid>
-            {Array.from({ length: 1}).map((_, index) => (
-              <ImageItem key={index}>
-                 <img
-            className="h-80 w-full object-contain"
-            src="/temp/stage.jpg"
-            style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
-          />
+     <Row>
+     <Col span={24} style={{textAlign: 'center'}}>
+      <div>
+      <h1 style={{fontSize:'30px', fontFamily: 'Courier New',color:'#1A3CCF'}}>We bring the convenience to your doorstep. Simply request our services, and we'll ensure that everything you need for your event from generators to lighting and more, is delivered to your location.</h1>
+      
+      </div>
+     </Col>
+     </Row>
+                                                  {/* Generators */}
+     <Row style={{marginTop:'50px'}}>
+     <Col span={10} style={{textAlign: 'center'}}>
+     <div>
+      <div>
+      <h1 style={{fontSize:'30px', fontFamily: 'Courier New'}}>Generators</h1>
+        <div
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+         
+         <img src="https://purepng.com/public/uploads/large/purepng.com-generatorgeneratorelectricity-generationmechanical-energyelectrical-powerpower-source-170152835040481zdy.png" alt="logo"  style={{ transition: 'transform 0.2s', width:'70%', height:'70%' }}
+       onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(0.9)';}}
+       onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; }} />
 
-<img
-            className="h-80 w-full object-contain"
-            src="/temp/function.jpg"
-            style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
-          />
+        </div>
 
-<img
-            className="h-80 w-full object-contain"
-            src="/temp/dj.jpg"
-            style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
-          />
+        
+      </div>
+    </div>
+     </Col>
 
-<img
-            className="h-80 w-full object-contain"
-            src="/temp/t.png"
-            style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
-          />
+     <Col span={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+     {isHovering && (
+          <div style={{fontSize:'18px', fontFamily: 'Courier New'}}>
+            <h2>Our generators are the backbone of reliable power supply for your mega events in SriLanka. These robust machines come in different capacities to meet your event's power needs. You can reserve particular generators as your intereset.l and alao  we provide fuel with the generators. With automatic fail-safes and skilled technicians on standby, you can trust that your event will never be left in the dark.</h2> 
+          </div>
+        )}
+    </Col>
 
-<img
-            className="h-80 w-full object-contain"
-            src="/temp/a.jpg"
-            style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
-          />
-              </ImageItem>
-            ))}
-          </ImageGrid>
-        </Wrap>
-      </Body>
-    </Container>
+     </Row>
+                                                       {/* light */}
+     <Row style={{marginTop:'50px'}}>
+     <Col span={10} style={{textAlign: 'center'}}>
+     <div>
+      <div>
+      <h1 style={{fontSize:'30px', fontFamily: 'Courier New'}}>Lights</h1>
+        <div
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+         
+         <img src="https://www.pngarts.com/files/3/Stage-Lights-PNG-Picture.png" alt="logo"  style={{ transition: 'transform 0.2s', width:'70%', height:'70%' }}
+       onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(0.9)';}}
+       onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; }} />
+
+        </div>
+
+        
+      </div>
+    </div>
+     </Col>
+
+     <Col span={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+     {isHovering && (
+          <div style={{fontSize:'18px', fontFamily: 'Courier New'}}>
+            <h2>We offer a spectrum of lighting options from vivid color displays .You can choose variety of ways to brighten up your venue and create the right mood.</h2> 
+          </div>
+        )}
+    </Col>
+
+     </Row>
+                                                   {/* Sounds */}
+     <Row style={{marginTop:'50px'}}>
+     <Col span={10} style={{textAlign: 'center'}}>
+     <div>
+      <div>
+      <h1 style={{fontSize:'30px', fontFamily: 'Courier New'}}> Sounds</h1>
+        <div
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+         
+         <img src="https://www.pngmart.com/files/17/Audio-Speakers-DJ-PNG-Transparent-Image.png" alt="logo"  style={{ transition: 'transform 0.2s', width:'60%', height:'60%' }}
+       onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(0.9)';}}
+       onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; }} />
+
+        </div>
+
+        
+      </div>
+    </div>
+     </Col>
+
+     <Col span={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+     {isHovering && (
+          <div style={{fontSize:'18px', fontFamily: 'Courier New'}}>
+            <h2> Immerse your audience in an auditory wonderland with our premium sound systems. . We provide a complete range of audio equipment, including high-quality speakers, microphones etc.</h2> 
+          </div>
+        )}
+    </Col>
+
+     </Row>
+                                                                  {/* Stages  */}
+     <Row style={{marginTop:'50px'}}>
+     <Col span={10} style={{textAlign: 'center'}}>
+     <div>
+      <div>
+      <h1 style={{fontSize:'30px', fontFamily: 'Courier New'}}>Stages </h1>
+        <div
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+         
+         <img src="https://pluspng.com/img-png/png-stage-welcome-to-dunicon-outdoor-stage-png-358.png" alt="logo"  style={{ transition: 'transform 0.2s', width:'70%', height:'70%' }}
+       onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(0.9)';}}
+       onMouseLeave={(e) => {e.currentTarget.style.transform = 'scale(1)'; }} />
+
+        </div>
+
+        
+      </div>
+    </div>
+     </Col>
+
+     <Col span={8} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+     {isHovering && (
+          <div style={{fontSize:'18px', fontFamily: 'Courier New'}}>
+            <h2>Our stages are versatile platforms for your event's performances and presentations. We offer stages in different  sizes and configurations to accommodate your specific needs. Our stage construction and design are developed with safety and flexibility in mind, allowing for easy customization. Whether you are hosting a live concert  or any other event our stages provide a professional and secure space .</h2> 
+          </div>
+        )}
+    </Col>
+
+     </Row>
+
+     
+
+
+     <Row style={{marginBottom:'50px'}}>
+     <Col span={24} style={{textAlign: 'center'}}>
+      <div>
+      <h1 style={{fontSize:'50px', fontFamily: 'Courier New',color:'#1A3CCF'}}>Dj artists</h1>
+      <h1 style={{fontSize:'18px', fontFamily: 'Courier New'}}>Enhance your event with the sounds of our talented DJ artist. You can elevate your experience by hiring our DJ artist , ensuring that your guests dance the night away to the hottest beats and tunes.</h1>
+      </div>
+     </Col>
+     </Row>
+
+     
+     <AppFooter />
+
+    </>
+    
   );
-}
-
-const Container = styled.div`
-  width: 100%;
-`;
-
-const Head = styled.div`
-  width: 100%;
-  height: 75vh;
-  
-  div {
-    width: 100%;
-    height: 11vh;
-    background: var(--main);
-  }
-
-  @media only screen and (max-width: 1200px) {
-    height: 46vh;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Body = styled.div`
-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #f3f4f5;
-  padding: 50px;
-
-  @media only screen and (max-width: 1200px) {
-    padding: 50px 10px;
-  }
-`;
-
-const Wrap = styled.div`
-width: 95%;
-  padding: 30px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const Header = styled.div`
-h1 {
-    font-size: 70px;
-    text-align: center;
-    color: var(--sec);
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 42px;
-    }
-  }
-
-  p {
-    padding: 10px;
-    line-height: 2.1rem;
-    letter-spacing: 2.1px;
-    text-align: center;
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 18px;
-      text-align: center;
-    }
-  }
-
-  h2 {
-    text-align: center;
-    padding: 50px 0;
-    font-size: 40px;
-    text-decoration: underline;
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 28px;
-      padding: 20px 0;
-    }
-  }
-
-  h3 {
-    text-align: center;
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 18px;
-    }
-  }
-`;
-
-const Detail = styled.div`
-   width: 80%;
-  background: #fff;
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 80px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-radius: 5px;
-
-  @media only screen and (max-width: 1200px) {
-    width: 100%;
-    padding: 10px;
-  }
-
-  h3 {
-    font-size: 26px;
-    font-weight: normal;
-    margin: 20px 0;
-    color: #011085;
-    letter-spacing: 2.1px;
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 22px;
-    }
-  }
-
-  p {
-    font-size: 16px;
-    font-weight: normal;
-    letter-spacing: 2.1px;
-  }
-
-  h5 {
-    font-size: 23px;
-    font-weight: normal;
-    margin: 12px 0;
-    letter-spacing: 2.1px;
-
-    @media only screen and (max-width: 1200px) {
-      font-size: 20px;
-    }
-  }
-
-  h4 {
-    font-weight: normal;
-    margin: 20px 0;
-    letter-spacing: 2.1px;
-  }
-
-  div {
-    width: 98%;
-    border-left: 3px solid #011085;
-    border-right: 3px solid #011085;
-    padding: 0 20px;
-    text-align: center;
-  }
-
-`;
-
-const ImageGrid = styled.div`
-  /* Styles for the image grid */
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
-
-const ImageItem = styled.div`
-  /* Styles for each image item */
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-`;
+};
 
 export default Service;

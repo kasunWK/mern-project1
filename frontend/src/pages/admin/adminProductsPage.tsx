@@ -10,6 +10,9 @@ import {
   useEditProductMutation,
 } from "../../store/api/productApi";
 import confirm from "antd/es/modal/confirm";
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { selectUser } from "../../store/api/userApi";
+import { useAppSelector } from "../../store/store";
 
 const AdminProductsPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -28,6 +31,7 @@ const AdminProductsPage = () => {
     form.append("description", values.description);
     form.append("category", values.category);
     form.append("price", values.price);
+    form.append("quantity", values.quantity);
     if (img) form.append("img", img);
     addProductMutation(form)
       .then(() => {
@@ -91,8 +95,13 @@ const AdminProductsPage = () => {
             msg.error("Failed to delete the product");
           });
       },
+      
+      icon: <CloseCircleOutlined />,
     });
   };
+
+  const user = useAppSelector(selectUser);
+
 
   return (
     <section className="m-5 bg-gray-300 p-10">
@@ -110,11 +119,12 @@ const AdminProductsPage = () => {
                 style={{ width: 200 }}
               />
             </Col>
+            {user?.usertype != "owner"?
             <Col>
               <Button onClick={onAddProductClick} className="bg-blue-300">
                 Add Product
               </Button>
-            </Col>
+            </Col>:<></>}
           </Row>
         </Col>
       </Row>

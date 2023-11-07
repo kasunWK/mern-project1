@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/crypto-js": "^4.1.1",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "antd": "^5.8.2",
+    "crypto-js": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -19,7 +21,6 @@
     "react-uuid": "^2.0.0",
     "redux-persist": "^6.0.0",
     "sass": "^1.64.2",
-    "styled-components": "^6.0.7",
     "typescript": "^5.1.6",
     "web-vitals": "^2.1.4"
   },
@@ -28,7 +29,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
   },
   "eslintConfig": {
     "extends": [

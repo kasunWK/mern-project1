@@ -23,7 +23,7 @@ export const productApi = createApi({
         method: "post",
         url: `item/getstockofcategory`,
         body: {
-          category: Categories[data.category],
+          category: Categories[data.category-1],
         },
       }),
       transformResponse: (res: CommonResponse<ItemType[]>) => {

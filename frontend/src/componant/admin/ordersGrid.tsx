@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Select, Space, Table } from "antd";
+import { Button, Select, Space, Table } from "antd";
 import Column from "antd/es/table/Column";
 import {
   useChangeOrderStatusMutation,
@@ -37,16 +37,64 @@ const OrdersGrid = ({ search }: Props) => {
     fetchOrders({});
   }, []);
 
+  
+  function convertToCSV(data: any[]) {
+    const csvArray = [];
+    // Add the header row
+    const header = Object.keys(data[0]);
+    csvArray.push(header.join(','));
+  
+    // Add the data rows
+    data.forEach(item => {
+      const row = header.map(fieldName => item[fieldName]);
+      csvArray.push(row.join(','));
+    });
+  
+    return csvArray.join('\n');
+  }
+  
+
+  function handleExportCSV() {
+    const csvData = convertToCSV(filteredOrders);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'orders.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+  
+  
+
   return (
     <div>
+      <div className="w-full">
+        <Button className="bg-blue-300" style={{"float":"right"}} onClick={handleExportCSV}>Export</Button>
+      </div>
       {filteredOrders && (
         <Table dataSource={filteredOrders} pagination={false}>
-          <Column title="ID" dataIndex="_id" key="id" />
+          {/* <Column title="ID" dataIndex="_id" key="id" /> */}
           <Column
-            title="Customer"
+            title={
+              <div>
+                Customer/
+                <br />
+                Order Name
+              </div>
+            }
             dataIndex="customer_name"
             key="customer_name"
+            render={(data: any, record: OrderType) => (
+              <div>
+                <div>{record.customer_name}</div>
+                <div>{record.orderforname}</div>
+              </div>
+            )}
           />
+          <Column title="Address" dataIndex="address" key="address" />
+          <Column title="Phone" dataIndex="phone" key="phone" />
           <Column
             title="Items"
             dataIndex="items"
@@ -54,6 +102,7 @@ const OrdersGrid = ({ search }: Props) => {
             render={(data: any[]) => (
               <Table dataSource={data} pagination={false}>
                 <Column title="Item Name" dataIndex="name" key="name" />
+                <Column title="Quantity" dataIndex="quantity" key="quantity" />
                 <Column
                   title="Order From Date"
                   dataIndex="order_from_date"

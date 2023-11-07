@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { LiaClipboardListSolid } from "react-icons/lia";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiFillDashboard, AiOutlineShoppingCart } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import { Layout, Menu, Button, Row, Col } from "antd";
 import { Outlet, useNavigate } from "react-router";
@@ -28,8 +28,14 @@ const AdminLayout: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["0"]}
           items={[
+            {
+              key: "0",
+              icon: <AiFillDashboard />,
+              label: "Overview",
+              onClick: () => navigate("/admin/overview"),
+            },
             {
               key: "1",
               icon: <LiaClipboardListSolid />,

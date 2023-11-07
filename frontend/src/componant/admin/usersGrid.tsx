@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Space, Table } from "antd";
+import { Button, Space, Table } from "antd";
 import Column from "antd/es/table/Column";
 import {
   selectUser,
@@ -42,14 +42,46 @@ const UsersGrid = ({ search, onClickEdit }: Props) => {
     fetchUsers({});
   }, []);
 
+  function convertToCSV(data: any[]) {
+    const csvArray = [];
+    // Add the header row
+    const header = Object.keys(data[0]);
+    csvArray.push(header.join(','));
+  
+    // Add the data rows
+    data.forEach(item => {
+      const row = header.map(fieldName => item[fieldName]);
+      csvArray.push(row.join(','));
+    });
+  
+    return csvArray.join('\n');
+  }
+  
+
+  function handleExportCSV() {
+    const csvData = convertToCSV(filteredUsers);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'users.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+  
+
   return (
     <div>
+       <div className="w-full">
+        <Button className="bg-blue-300" style={{"float":"right"}} onClick={handleExportCSV}>Export</Button>
+      </div>
       {filteredUsers && (
         <Table dataSource={filteredUsers} pagination={false}>
           <Column title="Name" dataIndex="name" key="name" />
           <Column title="Email" dataIndex="email" key="email" />
-          <Column title="Address" dataIndex="address" key="address" />
-          <Column title="Phone" dataIndex="phone" key="phone" />
+          {/* <Column title="Address" dataIndex="address" key="address" />
+          <Column title="Phone" dataIndex="phone" key="phone" /> */}
           <Column title="Type" dataIndex="usertype" key="usertype" />
           <Column
             title="Action"

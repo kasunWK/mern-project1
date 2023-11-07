@@ -6,8 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 type FieldType = {
   name: string;
   email: string;
-  phone: string;
-  address: string;
   password: string;
 };
 
@@ -24,7 +22,7 @@ const RegisterForm = () => {
   return (
     <div className="flex justify-center items-center flex-col w-6/12">
       <div className="flex flex-col items-center gap-2 mb-4">
-        <h1 className="text-2xl font-bold mb-5">Register</h1>
+        <h1 className="text-2xl font-bold mb-5" style={{ fontFamily: 'Courier New'}}>Register</h1>
       </div>
 
       <div>
@@ -61,7 +59,7 @@ const RegisterForm = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item<FieldType>
+          {/* <Form.Item<FieldType>
             label="Phone"
             name="phone"
             rules={[
@@ -72,8 +70,8 @@ const RegisterForm = () => {
             ]}
           >
             <Input />
-          </Form.Item>
-          <Form.Item<FieldType>
+          </Form.Item> */}
+          {/* <Form.Item<FieldType>
             label="Address"
             name="address"
             rules={[
@@ -84,7 +82,7 @@ const RegisterForm = () => {
             ]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item<FieldType>
             label="Password"

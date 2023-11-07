@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLazyGetProductsQuery } from "../../store/api/productApi";
-import { Space, Table } from "antd";
+import { Button, Space, Table } from "antd";
 import Column from "antd/es/table/Column";
+import { selectUser } from "../../store/api/userApi";
+import { useAppSelector } from "../../store/store";
 
 type Props = {
   search?: string;
@@ -37,8 +39,43 @@ const ProductsGrid = ({ search, onEditClick, onDeleteClick }: Props) => {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJiT-UHSm6w0Jperb8SitpfoAKeMUE3uynPg5YO-2Drw&s";
   };
 
+  function convertToCSV(data: any[]) {
+    const csvArray = [];
+    // Add the header row
+    const header = Object.keys(data[0]);
+    csvArray.push(header.join(','));
+  
+    // Add the data rows
+    data.forEach(item => {
+      const row = header.map(fieldName => item[fieldName]);
+      csvArray.push(row.join(','));
+    });
+  
+    return csvArray.join('\n');
+  }
+  
+
+  function handleExportCSV() {
+    const csvData = convertToCSV(filteredProducts);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'products.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  const user = useAppSelector(selectUser);
+
+  
+
   return (
     <div>
+      <div className="w-full">
+        <Button className="bg-blue-300" style={{"float":"right"}} onClick={handleExportCSV}>Export</Button>
+      </div>
       {filteredProducts && (
         <Table dataSource={filteredProducts} pagination={false}>
           <Column title="Name" dataIndex="name" key="name" />
@@ -65,16 +102,19 @@ const ProductsGrid = ({ search, onEditClick, onDeleteClick }: Props) => {
           />
           <Column title="Category" dataIndex="category" key="category" />
           <Column title="Price" dataIndex="price" key="price" />
+          <Column title="Stock Quantity" dataIndex="quantity" key="quantity" />
+          {user?.usertype != "owner" ?
           <Column
-            title="Action"
-            key="action"
-            render={(_: any, record: ItemType) => (
-              <Space size="middle">
-                <a onClick={() => onEditClick(record)}>Edit</a>
-                <a onClick={() => onDeleteClick(record)}>Delete</a>
-              </Space>
-            )}
-          />
+          title="Action"
+          key="action"
+          render={(_: any, record: ItemType) => (
+            <Space size="middle">
+              <a onClick={() => onEditClick(record)}>Edit</a>
+              <a className="hover:text-red hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium" onClick={() => onDeleteClick(record)}>Delete</a>
+            </Space>
+          )}
+        />:<></>}
+          
         </Table>
       )}
     </div>

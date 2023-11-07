@@ -11,9 +11,9 @@ const ProductsPage = () => {
   let category = searchParams.get("category");
 
   return (
-    <section className="m-5 bg-gray-300 p-10" >
-      <Carousel autoplay  >
-        <div>
+    <section className="m-5 bg-gray-300 p-10">
+      <Carousel autoplay>
+      <div>
           <img
             className="h-80 w-full object-contain"
             src="/temp/cover.png"
@@ -22,28 +22,28 @@ const ProductsPage = () => {
         <div>
           <img
             className="h-80 w-full object-contain"
-            src="/temp/gen.png"
+            src="/temp/i.png"
             style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
           />
         </div>
         <div>
           <img
             className="h-80 w-full object-contain"
-            src="/temp/dj.jpg"
+            src="/temp/DJ.png"
             style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
           />
         </div>
         <div>
           <img
             className="h-80 w-full object-contain"
-            src="/temp/function.jpg"
+            src="/temp/item.png"
             style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
           />
         </div>
         <div>
           <img
             className="h-80 w-full object-contain"
-            src="/temp/stage.jpg"
+            src="/temp/stage.png"
             style={{ display: "block", margin: "0 auto",maxWidth: "75vw",width: "100%",height: "35vw",objectFit: "cover"}} 
           />
         </div>
@@ -99,7 +99,9 @@ const ProductsPage = () => {
         }
       />
     </section>
+    
   );
+  
 };
 
 export default ProductsPage;
